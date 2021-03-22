@@ -1,4 +1,6 @@
+const bcrypt = require('bcrypt');
 const User = require('../models/user');
+const jwt = require('jsonwebtoken')
 
 module.exports.getUsers = (req, res) => {
   User.find({})
@@ -7,7 +9,7 @@ module.exports.getUsers = (req, res) => {
 };
 
 module.exports.getUserById = (req, res) => {
-  User.findById(req.params.userId)
+  User.findById(req.user._id)
     .then((user) => {
       if (!user) {
         res.status(404).send({ message: 'Нет пользователя с таким id' });
@@ -25,17 +27,24 @@ module.exports.getUserById = (req, res) => {
 };
 
 module.exports.createUser = (req, res) => {
-  const { name, about, avatar } = req.body;
+  const { name, about, avatar, email, password } = req.body;
 
-  User.create({ name, about, avatar })
-    .then((user) => res.status(200).send(user))
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        res.status(400).send({ message: 'Введены невалидные данные' });
-      } else {
-        res.status(500).send({ message: 'Произошла ошибка сервера' });
+  User.findOne({ email })
+    .then((user) => {
+      if (user) {
+        return res.status(403).send({ message: 'Пользователь с таким email уже существует'})
       }
-    });
+      return bcrypt.hash(password, 10);
+    })
+    .then(hash => User.create({ name, about, avatar, email, password: hash })
+      .then((user) => res.status(200).send(user))
+      .catch((err) => {
+        if (err.name === 'ValidationError') {
+          res.status(400).send({ message: 'Введены невалидные данные' });
+        } else {
+          res.status(500).send({ message: 'Произошла ошибка сервера' });
+        }
+      }));
 };
 
 module.exports.updateUser = (req, res) => {
@@ -87,5 +96,19 @@ module.exports.updateAvatar = (req, res) => {
       } else {
         res.status(500).send({ message: 'Произошла ошибка сервера' });
       }
+    });
+};
+
+module.exports.login = (req, res) => {
+  const { email, password } = req.body;
+
+  return User.findUserByCredentials(email, password)
+    .then((user) => {
+      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+
+      res.status(200).send({ token });
+    })
+    .catch((err) => {
+      res.status(401).send({ message: err.message });
     });
 };
