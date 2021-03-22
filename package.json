@@ -1,0 +1,32 @@
+{
+  "name": "express-mesto",
+  "version": "1.0.0",
+  "description": "## Директории",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuliaNesterova/express-mesto.git"
+  },
+  "author": "Yulia Nesterova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuliaNesterova/express-mesto/issues"
+  },
+  "homepage": "https://github.com/YuliaNesterova/express-mesto#readme",
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.17"
+  }
+}
