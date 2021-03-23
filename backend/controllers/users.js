@@ -1,10 +1,9 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const jwt = require('jsonwebtoken')
-const NotFoundError = require("../errors/not-found-err");
-const BadRequestErr = require("../errors/bad-request-err");
-const ConflictErr = require("../errors/conflict-err");
-const UnauthorizedErr = require("../errors/unauthorized-err");
+const NotFoundError = require('../errors/not-found-err');
+const BadRequestErr = require('../errors/bad-request-err');
+const ConflictErr = require('../errors/conflict-err');
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
@@ -16,7 +15,6 @@ module.exports.getUserById = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (!user) {
-        // res.status(404).send({ message: 'Нет пользователя с таким id' });
         throw new NotFoundError('Нет пользователя с таким id');
       } else {
         res.status(200).send(user);
@@ -31,7 +29,9 @@ module.exports.getUserById = (req, res, next) => {
 };
 
 module.exports.createUser = (req, res, next) => {
-  const { name, about, avatar, email, password } = req.body;
+  const {
+    name, about, avatar, email, password,
+  } = req.body;
 
   User.findOne({ email })
     .then((user) => {
@@ -40,7 +40,9 @@ module.exports.createUser = (req, res, next) => {
       }
       return bcrypt.hash(password, 10);
     })
-    .then(hash => User.create({ name, about, avatar, email, password: hash })
+    .then((hash) => User.create({
+      name, about, avatar, email, password: hash,
+    })
       .then((user) => res.status(200).send(user))
       .catch((err) => {
         if (err.name === 'ValidationError') {
