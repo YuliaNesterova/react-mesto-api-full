@@ -1,0 +1,14 @@
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader__image_size_xl {
+    width: 70vw;
+    height: 70vh;
+    animation: rotation 12s infinite ease-in-out;
+}

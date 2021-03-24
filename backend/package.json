@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon backend/app.js",
-    "start": "node backend/app.js"
+    "dev": "../node_modules/.bin/nodemon backend/app.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",

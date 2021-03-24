@@ -1,0 +1,22 @@
+.header {
+  width: calc(100% - 199px * 2);
+  margin: auto;
+  padding-top: 45px;
+  border-bottom: 1px solid 	rgba(128,128,128, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+@media (max-width: 950px) {
+  .header {
+    width: calc(100% - 25px *2);
+  }
+}
+
+@media (max-width: 630px) {
+  .header {
+    width: 100%;
+    padding: 0;
+  }
+}

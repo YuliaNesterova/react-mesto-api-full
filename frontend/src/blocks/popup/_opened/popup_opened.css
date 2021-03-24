@@ -1,0 +1,13 @@
+@keyframes slide {
+  0% {
+    transform: translateX(-110%);
+  }
+
+}
+
+.popup_opened {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  /*animation: slide 3s;*/
+}

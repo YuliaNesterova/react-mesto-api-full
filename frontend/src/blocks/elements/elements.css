@@ -1,0 +1,18 @@
+.elements {
+  width: calc(100% - 199px * 2);
+  margin: auto;
+  min-height: 761px;
+}
+@media (max-width: 950px) {
+  .elements {
+    width: calc(100% - 25px * 2);
+    min-height: 100%;
+  }
+}
+
+@media (max-width: 630px) {
+  .elements {
+    width: calc(100% - 19px * 2);
+    min-height: 100%;
+  }
+}

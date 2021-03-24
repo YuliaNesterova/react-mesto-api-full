@@ -1,0 +1,6 @@
+.loader__image_size_m {
+    width: 50vw;
+    height: 50vh;
+    transform: rotate(50deg);
+    animation: rotation 8s infinite ease-in-out;
+}

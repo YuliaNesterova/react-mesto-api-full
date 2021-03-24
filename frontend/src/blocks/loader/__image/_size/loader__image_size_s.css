@@ -1,0 +1,6 @@
+.loader__image_size_s {
+    width: 40vw;
+    height: 40vh;
+    transform: rotate(70deg);
+    animation: rotation 6s infinite ease-in-out;
+}

@@ -1,0 +1,23 @@
+.element__author {
+    position: absolute;
+    display: flex;
+    top: 5px;
+    left: 38px;
+    width: 55%;
+    height: 40px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 5px 5px 5px 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 0.3s;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-wrap: normal;
+}

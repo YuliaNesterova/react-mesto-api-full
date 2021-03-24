@@ -1,0 +1,9 @@
+.popup__title_type_error {
+    text-align: center;
+}
+
+@media (max-width: 630px) {
+    .popup__title_type_error {
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,5 @@
+.data {
+    width: calc(100% - 200px * 2);
+    margin: auto;
+    padding-top: 60px;
+}

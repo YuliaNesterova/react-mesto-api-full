@@ -1,0 +1,27 @@
+.data__input {
+    background-color: #000000;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #CCCCCC;
+    margin: 0 0 30px 0;
+    padding: 0 0 13px 0;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+
+.data__input:last-of-type {
+    margin-bottom: 216px;
+}
+
+.data__input::placeholder {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #CCCCCC;
+}

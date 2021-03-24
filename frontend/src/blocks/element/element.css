@@ -1,0 +1,26 @@
+.element {
+  background-color: #ffffff;
+  border-radius: 10px;
+  position: relative;
+  width: 282px;
+  overflow: hidden;
+}
+
+@media (max-width: 1279px) {
+  .element {
+    width: 250px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .element {
+    width: 350px;
+  }
+}
+
+@media (max-width: 1115px) {
+  .element {
+    width: 260px;
+  }
+}
+

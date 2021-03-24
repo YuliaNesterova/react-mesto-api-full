@@ -1,0 +1,16 @@
+.popup__container_type_delete {
+    width: 430px;
+}
+
+
+@media (max-width: 630px) {
+    .popup__container_type_delete {
+        max-width: 282px;
+    }
+}
+
+@media(max-width: 425px) {
+    .popup__container_type_delete {
+        max-width: 250px;
+    }
+}

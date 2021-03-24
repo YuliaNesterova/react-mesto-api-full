@@ -1,0 +1,43 @@
+.profile__image-button {
+    position: relative;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    margin-right: 30px;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+.profile__image-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 49%;
+    background: rgba(0, 0, 0, 0.8) url("../../../images/EditButton.svg") center no-repeat;
+    background-size: 26px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.3s linear, transform 0.3s linear;
+}
+
+.profile__image-button:hover::before {
+    visibility: visible;
+    opacity: 0.8;
+    transform: scale(1.2);
+}
+
+.profile__image-button:hover {
+    cursor: url("../../../images/cursor.png"), auto;
+}
+
+@media (max-width: 630px) {
+    .profile__image-button {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        justify-self: center;
+        margin: 0;
+    }
+}

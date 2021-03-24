@@ -1,0 +1,14 @@
+.profile__info {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  align-items: end;
+  align-self: center;
+}
+
+@media (max-width: 630px) {
+  .profile__info {
+    grid-template-columns: repeat(2, auto);
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,9 @@
+.popup__container_type_add {
+  min-width: 430px;
+}
+
+@media (max-width: 483px) {
+  .popup__container_type_add {
+    min-width: 240px;
+  }
+}
