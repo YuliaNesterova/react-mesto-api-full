@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongo = require('mongoose');
 const bodyParser = require('body-parser');
@@ -10,6 +11,7 @@ const errorRouter = require('./routes/error');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const crypto = require('crypto');
 
 const app = express();
 
