@@ -45,7 +45,8 @@ function App() {
         auth.authorize(password, email)
             .then((data) => {
                 if(data.token) {
-                    setLoggedIn(true)
+                    setLoggedIn(true);
+                    setUserEmail(email);
                     history.push('/main');
                 }
             })
@@ -84,7 +85,7 @@ function App() {
         }
         checkToken();
 
-    }, [history, loggedIn, token])
+    }, [history, loggedIn])
 
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(true);
