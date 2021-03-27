@@ -71,7 +71,7 @@ function App() {
                                 setToken(localStorage.getItem('token'));
                                 history.push('/main');
                                 setCurrentUser(userInfo)
-                                setCards(cards)
+                                setCards(cards.reverse())
                         })
                         .catch(() => {
                             setIsErrorPopupOpen(true);
