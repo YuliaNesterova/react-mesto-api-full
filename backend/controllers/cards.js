@@ -41,7 +41,7 @@ module.exports.deleteCard = (req, res, next) => {
 module.exports.likeCard = (req, res, next) => {
   Card.findById(req.params.cardId)
     .then((card) => {
-      if(!card) {
+      if (!card) {
         throw new NotFoundError('Нет карточки с таким id');
       }
 
@@ -57,7 +57,7 @@ module.exports.likeCard = (req, res, next) => {
           if (err.name === 'CastError') {
             throw new BadRequestErr('Введен невалидный id карточки');
           }
-        })
+        });
     })
     .catch(next);
 };
@@ -65,7 +65,7 @@ module.exports.likeCard = (req, res, next) => {
 module.exports.dislikeCard = (req, res, next) => {
   Card.findById(req.params.cardId)
     .then((card) => {
-      if(!card) {
+      if (!card) {
         throw new NotFoundError('Нет карточки с таким id');
       }
 
@@ -81,7 +81,7 @@ module.exports.dislikeCard = (req, res, next) => {
           if (err.name === 'CastError') {
             throw new BadRequestErr('Введен невалидный id карточки');
           }
-        })
+        });
     })
     .catch(next);
 };
