@@ -14,17 +14,9 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 
-const { PORT = 3001 } = process.env;
+app.use(cors());
 
-app.use('*', cors({
-  origin: [
-    'https://mesto.nesterova.students.nomoredomains.icu',
-  ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
-}));
+const { PORT = 3001 } = process.env;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
