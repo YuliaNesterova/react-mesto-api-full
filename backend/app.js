@@ -15,9 +15,11 @@ const options = {
   origin: [
     'https://mesto.nesterova.students.nomoredomains.icu',
   ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],  preflightContinue: false,  optionsSuccessStatus: 204,  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],  credentials: true,};
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],  preflightContinue: false,  optionsSuccessStatus: 204,  allowedHeaders: ['Content-Type', 'origin', 'Authorization', 'Accept'],  credentials: true,};
 
 const app = express();
+
+app.use('*', cors(options));
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', 'https://mesto.nesterova.students.nomoredomains.icu');
@@ -26,8 +28,6 @@ app.use(function(req, res, next) {
 
   next();
 });
-
-app.use('*', cors(options));
 
 const { PORT = 3001 } = process.env;
 
