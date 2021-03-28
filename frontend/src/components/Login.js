@@ -42,6 +42,7 @@ function Login(props) {
                     <input className="data__input data__input_type_register" placeholder="Пароль"
                            name="password" id="password" type="password"
                            value={password} onChange={handlePasswordChange}
+                           minLength={8}
                            required/>
                     <button type="submit" className="data__button data__button_type_login">Войти</button>
                 </form>

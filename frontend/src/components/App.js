@@ -215,7 +215,7 @@ function App() {
     function handleRegister(password, email) {
         auth.register(password, email)
             .then((res) => {
-                if(res) {
+                if(res.user) {
                     setIsRegisterSuccess(true);
                     setIsInfoTooltipOpen(true);
                     setIsLoginPageActive(true);

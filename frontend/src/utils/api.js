@@ -15,7 +15,8 @@ class Api {
            return fetch(`${this._baseUrl}/cards`, {
                 headers: {
                     authorization: `Bearer ${token}`
-                }
+                },
+               credentials: 'include'
             })
                .then((res) => this._getResponseData(res));
         }
@@ -24,7 +25,8 @@ class Api {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: {
                 authorization: `Bearer ${token}`
-            }
+            },
+            credentials: 'include'
         })
             .then((res) => this._getResponseData(res));
     }
@@ -36,6 +38,7 @@ class Api {
                 authorization: `Bearer ${token}`,
                 'Content-Type': this._contentType
             },
+            credentials: 'include',
             body: JSON.stringify({
                 name: object.name,
                 about: object.about
@@ -51,6 +54,7 @@ class Api {
                 authorization: `Bearer ${token}`,
                 'Content-Type': this._contentType
             },
+            credentials: 'include',
             body: JSON.stringify({
                 name: object.description,
                 link: object.image
@@ -66,6 +70,7 @@ class Api {
                 authorization: `Bearer ${token}`,
                 'Content-Type': this._contentType
             },
+            credentials: 'include'
         })
             .then((res) => this._getResponseData(res));
     }
@@ -77,6 +82,7 @@ class Api {
                 authorization: `Bearer ${token}`,
                 'Content-Type': this._contentType
             },
+            credentials: 'include',
             body: JSON.stringify({
                 avatar: object.avatar
             })
@@ -91,7 +97,8 @@ class Api {
                 headers: {
                     authorization: `Bearer ${token}`,
                     'Content-Type': this._contentType
-                }
+                },
+                credentials: 'include'
             })
                 .then((res) => this._getResponseData(res));
         } else {
@@ -100,7 +107,8 @@ class Api {
                 headers: {
                     authorization: `Bearer ${token}`,
                     'Content-Type': this._contentType
-                }
+                },
+                credentials: 'include'
             })
                 .then((res) => this._getResponseData(res));
         }

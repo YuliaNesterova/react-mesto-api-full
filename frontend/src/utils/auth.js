@@ -7,6 +7,7 @@ export function register (password, email) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({
             "password": password,
             "email": email
@@ -22,6 +23,7 @@ export function authorize (password, email) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({
             "password": password,
             "email": email
@@ -43,7 +45,8 @@ export function getUserData(token) {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
-        }
+        },
+        credentials: 'include'
     })
         .then(res => res.json())
         .then(data => data)
