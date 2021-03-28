@@ -13,3 +13,6 @@ node_modules
 # Optional REPL history
 .idea
 /backend/.env
+
+./frontend/build
+frontend/build
