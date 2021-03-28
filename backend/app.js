@@ -4,7 +4,6 @@ const mongo = require('mongoose');
 const bodyParser = require('body-parser');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
-const cors = require('cors');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
 const errorRouter = require('./routes/error');
@@ -16,7 +15,14 @@ const app = express();
 
 const { PORT = 3001 } = process.env;
 
-app.use(cors());
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'https://mesto.nesterova.students.nomoredomains.icu');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+
+  next();
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
