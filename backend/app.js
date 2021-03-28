@@ -17,9 +17,12 @@ const options = {
     'http://localhost:3000',
     'https://mesto.nesterova.students.nomoredomains.icu',
   ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],  preflightContinue: false,
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
   optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'origin', 'Authorization', 'Accept'],  credentials: true,};
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization', 'Accept'],
+  credentials: true,
+};
 
 const app = express();
 
