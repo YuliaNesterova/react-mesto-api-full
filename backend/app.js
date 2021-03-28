@@ -11,11 +11,10 @@ const errorRouter = require('./routes/error');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const crypto = require('crypto');
 
 const app = express();
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -37,15 +36,18 @@ app.get('/crash-test', () => {
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
+    name: Joi.string().min(2).max(2),
+    about: Joi.string().min(2).max(2),
+    avatar: Joi.string().pattern(new RegExp(/^(http|https):\/\/(www\.)?[\w-._~:/?#[\]@!$&'()*+,;=%]+#?$/i)),
     email: Joi.string().required().email(),
-    password: Joi.string().required(),
+    password: Joi.string().required().min(8),
   }),
 }), createUser);
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
-    password: Joi.string().required(),
+    password: Joi.string().required().min(8),
   }),
 }), login);
 

@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://api.nesterova.students.nomoredomains.icu';
+export const BASE_URL = 'https://api.nesterova.students.nomoredomains.icu';
 
 export function register (password, email) {
     return fetch(`${BASE_URL}/signup`, {

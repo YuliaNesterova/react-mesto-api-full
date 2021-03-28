@@ -39,43 +39,49 @@ module.exports.deleteCard = (req, res, next) => {
 };
 
 module.exports.likeCard = (req, res, next) => {
-  Card.findByIdAndUpdate(
-    req.params.cardId,
-    { $addToSet: { likes: req.user._id } },
-    { new: true },
-  )
+  Card.findById(req.params.cardId)
     .then((card) => {
-      if (!card) {
+      if(!card) {
         throw new NotFoundError('Нет карточки с таким id');
-      } else {
-        res.status(200).send(card);
       }
-    })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        throw new BadRequestErr('Введен невалидный id карточки');
-      }
+
+      Card.findByIdAndUpdate(
+        req.params.cardId,
+        { $addToSet: { likes: req.user._id } },
+        { new: true },
+      )
+        .then((updatedCard) => {
+          res.status(200).send(updatedCard);
+        })
+        .catch((err) => {
+          if (err.name === 'CastError') {
+            throw new BadRequestErr('Введен невалидный id карточки');
+          }
+        })
     })
     .catch(next);
 };
 
 module.exports.dislikeCard = (req, res, next) => {
-  Card.findByIdAndUpdate(
-    req.params.cardId,
-    { $pull: { likes: req.user._id } },
-    { new: true },
-  )
+  Card.findById(req.params.cardId)
     .then((card) => {
-      if (!card) {
+      if(!card) {
         throw new NotFoundError('Нет карточки с таким id');
-      } else {
-        res.status(200).send(card);
       }
-    })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        throw new BadRequestErr('Введен невалидный id карточки');
-      }
+
+      Card.findByIdAndUpdate(
+        req.params.cardId,
+        { $pull: { likes: req.user._id } },
+        { new: true },
+      )
+        .then((updatedCard) => {
+          res.status(200).send(updatedCard);
+        })
+        .catch((err) => {
+          if (err.name === 'CastError') {
+            throw new BadRequestErr('Введен невалидный id карточки');
+          }
+        })
     })
     .catch(next);
 };

@@ -1,7 +1,6 @@
 class Api {
     constructor({baseUrl, authorization, contentType}) {
         this._baseUrl = baseUrl;
-        this._authorization = authorization;
         this._contentType = contentType;
     }
 
@@ -108,6 +107,6 @@ class Api {
     }
     }
 
-    const api = new Api({baseUrl: 'http://api.nesterova.students.nomoredomains.icu', contentType: 'application/json'})
+    const api = new Api({baseUrl: 'https://api.nesterova.students.nomoredomains.icu', contentType: 'application/json'})
 
 export default api;
