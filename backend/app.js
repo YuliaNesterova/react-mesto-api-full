@@ -11,16 +11,10 @@ const errorRouter = require('./routes/error');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const options = {
-  origin: [
-    'https://mesto.nesterova.students.nomoredomains.icu',
-    'http://localhost:3000'
-  ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],  preflightContinue: false,  optionsSuccessStatus: 204,  allowedHeaders: ['Content-Type', 'origin', 'Authorization', 'Accept'],  credentials: true,};
 
 const app = express();
 
-app.use('*', cors(options));
+app.use(cors());
 
 const { PORT = 3001 } = process.env;
 
