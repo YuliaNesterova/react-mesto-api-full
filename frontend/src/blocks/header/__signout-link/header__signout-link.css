@@ -1,30 +1,28 @@
-.header__link {
+.header__signout-link {
+    color: #A9A9A9;
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
     text-align: right;
-    color: #FFFFFF;
     text-decoration: none;
     transition: opacity 0.3s;
 }
 
-.header__link:hover {
+.header__signout-link:hover {
     opacity: 0.5;
 }
 
 @media(max-width: 630px) {
-    .header__link {
+    .header__signout-link {
         margin-right: 30px;
     }
 }
 
 @media(max-width: 500px) {
-    .header__link {
-        width: 100%;
+    .header__signout-link {
+        display: none;
         margin: 0 0 40px 0;
-        align-self: center;
-        text-align: center;
     }
 }

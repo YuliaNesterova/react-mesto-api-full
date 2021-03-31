@@ -7,8 +7,9 @@
 @import url("./blocks/header/__buttons/header__buttons.css");
 @import url("./blocks/header/__wrapper/header__wrapper.css");
 @import url("./blocks/header/__link/header__link.css");
-@import url("./blocks/header/__link/_type/header__link_type_signout.css");
+@import url("./blocks/header/__signout-link/header__signout-link.css");
 @import url("./blocks/header/__email/header__email.css");
+@import url("./blocks/header/__main-info/header__main-info.css");
 @import url("./blocks/header/__menu-button/header__menu-button.css");
 @import url("./blocks/header/__close-button/header__close-button.css");
 @import url("./blocks/header/__display/header__display.css");
