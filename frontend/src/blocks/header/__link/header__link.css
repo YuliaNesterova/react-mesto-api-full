@@ -13,3 +13,16 @@
 .header__link:hover {
     opacity: 0.5;
 }
+
+@media(max-width: 630px) {
+    .header__link {
+        margin-right: 30px;
+    }
+}
+
+@media(max-width: 500px) {
+    .header__link {
+        display: none;
+        margin: 0 0 40px 0;
+    }
+}

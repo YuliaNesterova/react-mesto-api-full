@@ -8,3 +8,10 @@
     color: #FFFFFF;
     margin-right: 24px;
 }
+
+@media(max-width: 500px) {
+    .header__email {
+        display: none;
+        margin: 0 0 18px 0;
+    }
+}

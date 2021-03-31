@@ -1,5 +1,12 @@
 .header__wrapper {
     display: flex;
     align-items: center;
+}
 
+@media(max-width: 500px) {
+    .header__wrapper {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
 }

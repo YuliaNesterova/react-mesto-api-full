@@ -20,3 +20,9 @@
     padding: 0;
   }
 }
+
+@media(max-width: 500px) {
+  .header {
+    flex-direction: column;
+  }
+}

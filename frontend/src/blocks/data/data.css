@@ -2,4 +2,14 @@
     width: calc(100% - 200px * 2);
     margin: auto;
     padding-top: 60px;
+    min-height: 470px;
+}
+
+@media(max-width: 770px) {
+    .data {
+        width: calc(100% - 30px * 2);
+        margin: auto;
+        padding-top: 60px;
+        min-height: 427px;
+    }
 }
