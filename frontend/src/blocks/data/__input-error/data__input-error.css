@@ -10,3 +10,9 @@
 .data__input-error:last-of-type {
     margin-bottom: 216px;
 }
+
+@media(max-width: 425px) {
+    .data__input-error:last-of-type {
+        margin-bottom: 173px;
+    }
+}

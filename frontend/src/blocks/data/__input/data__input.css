@@ -22,9 +22,3 @@
     line-height: 17px;
     color: #CCCCCC;
 }
-
-@media(max-width: 425px) {
-    .data__input:last-of-type {
-        margin-bottom: 173px;
-    }
-}
