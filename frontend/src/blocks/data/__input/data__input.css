@@ -3,7 +3,7 @@
     border: none;
     outline: none;
     border-bottom: 2px solid #CCCCCC;
-    margin: 0 0 30px 0;
+    margin: 0 0 5px 0;
     padding: 0 0 13px 0;
     font-family: Inter;
     font-style: normal;
@@ -11,10 +11,7 @@
     font-size: 14px;
     line-height: 17px;
     color: #FFFFFF;
-}
-
-.data__input:last-of-type {
-    margin-bottom: 216px;
+    transition: border-bottom 0.5s ease-in-out;
 }
 
 .data__input::placeholder {

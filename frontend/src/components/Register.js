@@ -4,13 +4,30 @@ import { Link, withRouter } from 'react-router-dom';
 function Register(props) {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [emailValidationMessage, setEmailValidationMessage] = React.useState('');
+    const [passwordValidationMessage, setPasswordValidationMessage] = React.useState('');
+    const [isEmailValid, setIsEmailValid] = React.useState(true);
+    const [isPasswordValid, setIsPasswordValid] = React.useState(true);
+    const [isRegisterFormValid, setIsRegisterFormValid] = React.useState(true);
+
+    function checkFormValidity() {
+        if(isEmailValid && isPasswordValid) {
+            setIsRegisterFormValid(true);
+        } else {
+            setIsRegisterFormValid(false);
+        }
+    }
 
     function handleEmailChange(e) {
-        setEmail(e.target.value)
+        setEmail(e.target.value);
+        setIsEmailValid(e.target.checkValidity());
+        setEmailValidationMessage(e.target.validationMessage);
     }
 
     function handlePasswordChange(e) {
-        setPassword(e.target.value)
+        setPassword(e.target.value);
+        setIsPasswordValid(e.target.checkValidity());
+        setPasswordValidationMessage(e.target.validationMessage);
     }
 
     function handleSubmit(e) {
@@ -30,17 +47,21 @@ function Register(props) {
         <section className="data data_type_register">
             <div className="data__container data__container_type_register">
                 <h2 className="data__title data__header_type_register">Регистрация</h2>
-                <form name="login-form" className="data__form data__form-type_register" onSubmit={handleSubmit}>
-                    <input className="data__input data__input_type_register" placeholder="Email"
+                <form name="register-form" className="data__form data__form-type_register" onSubmit={handleSubmit}
+                      onChange={checkFormValidity}>
+                    <input className={`data__input data__input_type_register ${isEmailValid ? '' : 'data__input_invalid'}`} placeholder="Email"
                            name="email" id="email" type="email"
                            value={email} onChange={handleEmailChange}
                            required/>
-                    <input className="data__input data__input_type_register" placeholder="Пароль"
+                    <span className="data__input-error" id="email-input-error">{emailValidationMessage}</span>
+                    <input className={`data__input data__input_type_register ${isPasswordValid ? '' : 'data__input_invalid'}`} placeholder="Пароль"
                            name="password" id="password" type="password"
                            value={password} onChange={handlePasswordChange}
                            minLength={8}
                            required/>
-                    <button type="submit" className="data__button data__button_type_register">Зарегистрироваться</button>
+                    <span className="data__input-error" id="password-input-error">{passwordValidationMessage}</span>
+                    <button type="submit" className={`data__button data__button_type_register ${isRegisterFormValid ? '' : `data__button_inactive`}`}
+                            disabled={!isRegisterFormValid}>Зарегистрироваться</button>
                 </form>
                 <h3 className="data__subtitle">Уже зарегистрированы?
                     <Link className="data__link" to="/sign-in" onClick={props.handleLoginActive}> Войти</Link></h3>

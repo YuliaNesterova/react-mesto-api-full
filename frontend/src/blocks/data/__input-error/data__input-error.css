@@ -1,0 +1,12 @@
+.data__input-error {
+    font-size: 12px;
+    line-height: 15px;
+    color: #f74f43;
+    min-height: 30px;
+    width: 358px;
+    margin-bottom: 8px;
+}
+
+.data__input-error:last-of-type {
+    margin-bottom: 216px;
+}

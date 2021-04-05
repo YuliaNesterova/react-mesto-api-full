@@ -6,6 +6,11 @@ import {CurrentUserContext} from "../contexts/CurrentUserContext";
 export default function EditProfilePopup(props) {
     const [name, setName] = React.useState('');
     const [description, setDescription] = React.useState('');
+    const [nameValidationMessage, setNameValidationMessage] = React.useState('');
+    const [descriptionValidationMessage, setDescriptionValidationMessage] = React.useState('');
+    const [isNameValid, setIsNameValid] = React.useState(true);
+    const [isDescriptionValid, setIsDescriptionValid] = React.useState(true);
+    const [isProfileFormValid, setIsProfileFormValid] = React.useState(true);
 
     const currentUser = React.useContext(CurrentUserContext);
 
@@ -14,13 +19,24 @@ export default function EditProfilePopup(props) {
         setDescription(currentUser.about);
         }, [currentUser]);
 
-
     function handleNameChange(e) {
         setName(e.target.value);
+        setIsNameValid(e.target.checkValidity());
+        setNameValidationMessage(e.target.validationMessage);
     }
 
     function handleDescriptionChange(e) {
         setDescription(e.target.value);
+        setIsDescriptionValid(e.target.checkValidity());
+        setDescriptionValidationMessage(e.target.validationMessage);
+    }
+
+    function checkProfileFormValidity() {
+        if(isNameValid && isDescriptionValid) {
+            setIsProfileFormValid(true);
+        } else {
+            setIsProfileFormValid(false);
+        }
     }
 
     function handleSubmit(e) {
@@ -32,8 +48,16 @@ export default function EditProfilePopup(props) {
         });
     }
 
+    function handleEditProfileClose() {
+        props.onClose();
+        setNameValidationMessage('');
+        setDescriptionValidationMessage('');
+    }
+
     return (
-        <PopupWithForm isOpen={props.isOpen} save={true} onClose={props.onClose} onSubmit={handleSubmit} name={`edit`} title={`Редактировать профиль`} isSaving={props.isSaving}>
+        <PopupWithForm isOpen={props.isOpen} save={true} onClose={handleEditProfileClose} onSubmit={handleSubmit} onOpen={checkProfileFormValidity}
+                       onChange={checkProfileFormValidity} isValid={isProfileFormValid}
+                       name={`edit`} title={`Редактировать профиль`} isSaving={props.isSaving}>
             <fieldset className="popup__field">
                 <input type="text" name="name" className="popup__input popup__input_type_title"
                        placeholder="Имя"
@@ -42,13 +66,13 @@ export default function EditProfilePopup(props) {
                        maxLength="40"
                        value={name || ''}
                        onChange={handleNameChange} required/>
-                <span className="popup__input-error" id="name-input-error"></span>
+                <span className="popup__input-error" id="name-input-error">{nameValidationMessage}</span>
                 <input type="text" name="profession" className="popup__input popup__input_type_subtitle"
                        placeholder="Вид деятельности" id="profession-input"
                        minLength="2" maxLength="200"
                        value={description || ''}
                        onChange={handleDescriptionChange} required/>
-                <span className="popup__input-error" id="profession-input-error"></span>
+                <span className="popup__input-error" id="profession-input-error">{descriptionValidationMessage}</span>
             </fieldset>
         </PopupWithForm>
     )
