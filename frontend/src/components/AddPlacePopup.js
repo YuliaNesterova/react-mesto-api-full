@@ -11,6 +11,7 @@ export default function AddPlacePopup(props) {
     const [isAddPlaceFormValid, setIsAddPlaceFormValid] = React.useState(true);
 
     function handleImageChange(e) {
+        console.log(e.target.checkValidity())
         setImage(e.target.value);
         setIsImageValid(e.target.checkValidity());
         setImageValidationMessage(e.target.validationMessage);

@@ -19,4 +19,17 @@
   color: #C4C4C4;
 }
 
+.popup__input:-webkit-autofill,
+.popup__input:-webkit-autofill:hover,
+.popup__input:-webkit-autofill:focus,
+.popup__input:-webkit-autofill:active
+{
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+.popup__input:-webkit-autofill
+{
+  -webkit-text-fill-color: black;
+}
+
 

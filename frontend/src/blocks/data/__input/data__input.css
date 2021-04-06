@@ -22,3 +22,16 @@
     line-height: 17px;
     color: #CCCCCC;
 }
+
+.data__input:-webkit-autofill,
+.data__input:-webkit-autofill:hover,
+.data__input:-webkit-autofill:focus,
+.data__input:-webkit-autofill:active
+{
+    -webkit-box-shadow: 0 0 0 30px black inset !important;
+}
+
+.data__input:-webkit-autofill
+{
+    -webkit-text-fill-color: white !important;
+}

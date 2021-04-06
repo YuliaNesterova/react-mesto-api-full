@@ -55,13 +55,13 @@ function Login(props) {
                     <input className={`data__input data__input_type_login ${isEmailValid ? '' : 'data__input_invalid'}`}
                            placeholder="Email"
                            name="email" id="email" type="email"
-                           value={email} onChange={handleEmailChange}
+                           value={email || ''} onChange={handleEmailChange}
                            required/>
                     <span className="data__input-error" id="email-input-error">{emailValidationMessage}</span>
                     <input className={`data__input data__input_type_login ${isPasswordValid ? '' : 'data__input_invalid'}`}
                            placeholder="Пароль"
                            name="password" id="password" type="password"
-                           value={password} onChange={handlePasswordChange}
+                           value={password || ''} onChange={handlePasswordChange}
                            minLength={8}
                            required/>
                     <span className="data__input-error" id="password-input-error">{passwordValidationMessage}</span>
