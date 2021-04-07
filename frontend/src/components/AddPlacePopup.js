@@ -11,7 +11,6 @@ export default function AddPlacePopup(props) {
     const [isAddPlaceFormValid, setIsAddPlaceFormValid] = React.useState(true);
 
     function handleImageChange(e) {
-        console.log(e.target.checkValidity())
         setImage(e.target.value);
         setIsImageValid(e.target.checkValidity());
         setImageValidationMessage(e.target.validationMessage);
@@ -23,15 +22,6 @@ export default function AddPlacePopup(props) {
         setDescriptionValidationMessage(e.target.validationMessage);
     }
 
-    function checkAddPlaceFormValidity() {
-        if(isImageValid && isDescriptionValid) {
-            setIsAddPlaceFormValid(true);
-        } else {
-            setIsAddPlaceFormValid(false);
-        }
-    }
-
-
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -42,25 +32,31 @@ export default function AddPlacePopup(props) {
         )
     }
 
-    function handleAddPlaceClose() {
-        props.onClose();
-
-        setImageValidationMessage('');
-        setDescriptionValidationMessage('');
-        setIsDescriptionValid(true);
-        setIsImageValid(true);
-    }
-
     React.useEffect(() => {
         if (!props.isOpen) {
             setImage('');
             setDescription('');
+            setImageValidationMessage('');
+            setDescriptionValidationMessage('');
+            setIsImageValid(true);
+            setIsDescriptionValid(true);
         }
     }, [props.isOpen]);
 
+    React.useEffect(() => {
+        function checkAddPlaceFormValidity() {
+            if(isImageValid && isDescriptionValid) {
+                setIsAddPlaceFormValid(true);
+            } else {
+                setIsAddPlaceFormValid(false);
+            }
+        }
+        checkAddPlaceFormValidity();
+    }, [image, description, isImageValid, isDescriptionValid]);
+
     return (
-        <PopupWithForm  isOpen={props.isOpen} save={true} onClose={handleAddPlaceClose} onOpen={checkAddPlaceFormValidity}
-                        onSubmit={handleSubmit} onChange={checkAddPlaceFormValidity} isValid={isAddPlaceFormValid}
+        <PopupWithForm  isOpen={props.isOpen} save={true} onClose={props.onClose}
+                        onSubmit={handleSubmit} isValid={isAddPlaceFormValid}
                         name={`add`} title={`Новое место`} isSaving={props.isSaving}>
             <fieldset className="popup__field">
                 <input type="text" name="description"

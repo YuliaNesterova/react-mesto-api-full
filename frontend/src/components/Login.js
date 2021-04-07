@@ -11,14 +11,6 @@ function Login(props) {
     const [isPasswordValid, setIsPasswordValid] = React.useState(true);
     const [isLoginFormValid, setIsLoginFormValid] = React.useState(true);
 
-    function checkFormValidity() {
-        if(isEmailValid && isPasswordValid) {
-            setIsLoginFormValid(true);
-        } else {
-            setIsLoginFormValid(false);
-        }
-    }
-
     function handleEmailChange(e) {
         setEmail(e.target.value);
         setIsEmailValid(e.target.checkValidity());
@@ -45,13 +37,24 @@ function Login(props) {
             setEmail('');
             setPassword('');
         }
-    }, [props.loggedIn])
+    }, [props.loggedIn]);
+
+    React.useEffect(() => {
+        function checkFormValidity() {
+            if(isEmailValid && isPasswordValid) {
+                setIsLoginFormValid(true);
+            } else {
+                setIsLoginFormValid(false);
+            }
+        }
+        checkFormValidity();
+    }, [email, password, isEmailValid, isPasswordValid])
 
     return (
         <section className="data data_type_login">
             <div className="data__container data__container_type_login">
                 <h2 className="data__title data__header_type_login">Вход</h2>
-                <form name="login-form" className="data__form data__form-type_login" onSubmit={handleSubmit} onChange={checkFormValidity}>
+                <form name="login-form" className="data__form data__form-type_login" onSubmit={handleSubmit} >
                     <input className={`data__input data__input_type_login ${isEmailValid ? '' : 'data__input_invalid'}`}
                            placeholder="Email"
                            name="email" id="email" type="email"

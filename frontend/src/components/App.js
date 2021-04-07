@@ -23,6 +23,7 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+    const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
     const [selectedCard, setSelectedCard] = React.useState(false);
     const [cards, setCards] = React.useState([]);
     const [currentUser, setCurrentUser] = React.useState({});
@@ -104,6 +105,7 @@ function App() {
             link: card.link,
             name: card.name
         });
+        setIsImagePopupOpen(true);
     }
 
     function handleCardLike(card) {
@@ -146,11 +148,13 @@ function App() {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
-        setSelectedCard(false);
+        setIsImagePopupOpen(false);
         setIsErrorPopupOpen(false);
         setIsCardDeletePopupOpen(false);
         setIsInfoTooltipOpen(false);
     }
+
+
 
    function handleUpdateUser(object) {
        setIsSaving(true);
@@ -264,7 +268,7 @@ function App() {
               <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} isSaving={isSaving}/>
               <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlace} isSaving={isSaving}/>
               <CardDeletePopup isOpen={isCardDeletePopupOpen} onClose={closeAllPopups} onCardDelete={handleDeleteCardConfirm} isDeleting={isDeleting}/>
-              <ImagePopup name={`image`} card={selectedCard} onClose={closeAllPopups} />
+              <ImagePopup name={`image`} card={selectedCard} onClose={closeAllPopups} isOpen={isImagePopupOpen} />
               <ErrorPopup isOpen={isErrorPopupOpen} onClose={closeAllPopups} />
               <Loader isLoading={pageLoader}/>
           </div>

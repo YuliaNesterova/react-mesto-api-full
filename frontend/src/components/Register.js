@@ -10,14 +10,6 @@ function Register(props) {
     const [isPasswordValid, setIsPasswordValid] = React.useState(true);
     const [isRegisterFormValid, setIsRegisterFormValid] = React.useState(true);
 
-    function checkFormValidity() {
-        if(isEmailValid && isPasswordValid) {
-            setIsRegisterFormValid(true);
-        } else {
-            setIsRegisterFormValid(false);
-        }
-    }
-
     function handleEmailChange(e) {
         setEmail(e.target.value);
         setIsEmailValid(e.target.checkValidity());
@@ -41,14 +33,24 @@ function Register(props) {
             setEmail('');
             setPassword('');
         }
-    }, [props.isRegisterSuccess])
+    }, [props.isRegisterSuccess]);
+
+    React.useEffect(() => {
+        function checkFormValidity() {
+            if(isEmailValid && isPasswordValid) {
+                setIsRegisterFormValid(true);
+            } else {
+                setIsRegisterFormValid(false);
+            }
+        }
+        checkFormValidity();
+    }, [email, password, isEmailValid, isPasswordValid]);
 
     return (
         <section className="data data_type_register">
             <div className="data__container data__container_type_register">
                 <h2 className="data__title data__header_type_register">Регистрация</h2>
-                <form name="register-form" className="data__form data__form-type_register" onSubmit={handleSubmit}
-                      onChange={checkFormValidity}>
+                <form name="register-form" className="data__form data__form-type_register" onSubmit={handleSubmit}>
                     <input className={`data__input data__input_type_register ${isEmailValid ? '' : 'data__input_invalid'}`} placeholder="Email"
                            name="email" id="email" type="email"
                            value={email} onChange={handleEmailChange}

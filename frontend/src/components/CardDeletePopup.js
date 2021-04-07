@@ -11,6 +11,6 @@ export default function CardDeletePopup(props) {
 
     return (
         <PopupWithForm name="delete" save={false} isOpen={props.isOpen} onClose={props.onClose} title="Вы уверены?"
-                       onSubmit={handleCardDeleteSubmit} isDeleting={props.isDeleting}/>
+                       onSubmit={handleCardDeleteSubmit} isDeleting={props.isDeleting} isValid={true}/>
     )
 }

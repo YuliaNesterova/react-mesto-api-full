@@ -17,7 +17,27 @@ export default function EditProfilePopup(props) {
     React.useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-        }, [currentUser]);
+        }, [currentUser, props.isOpen]);
+
+    React.useEffect(() => {
+        function checkProfileFormValidity() {
+            if(isNameValid && isDescriptionValid) {
+                setIsProfileFormValid(true);
+            } else {
+                setIsProfileFormValid(false);
+            }
+        }
+        checkProfileFormValidity();
+    }, [name, description, isNameValid, isDescriptionValid]);
+
+    React.useEffect(() => {
+        if(!props.isOpen) {
+            setNameValidationMessage('');
+            setDescriptionValidationMessage('');
+            setIsNameValid(true);
+            setIsDescriptionValid(true);
+        }
+    }, [props.isOpen]);
 
     function handleNameChange(e) {
         setName(e.target.value);
@@ -31,14 +51,6 @@ export default function EditProfilePopup(props) {
         setDescriptionValidationMessage(e.target.validationMessage);
     }
 
-    function checkProfileFormValidity() {
-        if(isNameValid && isDescriptionValid) {
-            setIsProfileFormValid(true);
-        } else {
-            setIsProfileFormValid(false);
-        }
-    }
-
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -48,15 +60,9 @@ export default function EditProfilePopup(props) {
         });
     }
 
-    function handleEditProfileClose() {
-        props.onClose();
-        setNameValidationMessage('');
-        setDescriptionValidationMessage('');
-    }
-
     return (
-        <PopupWithForm isOpen={props.isOpen} save={true} onClose={handleEditProfileClose} onSubmit={handleSubmit} onOpen={checkProfileFormValidity}
-                       onChange={checkProfileFormValidity} isValid={isProfileFormValid}
+        <PopupWithForm isOpen={props.isOpen} save={true} onClose={props.onClose} onSubmit={handleSubmit} onKeyDown={props.onKeyDown}
+                       isValid={isProfileFormValid}
                        name={`edit`} title={`Редактировать профиль`} isSaving={props.isSaving}>
             <fieldset className="popup__field">
                 <input type="text" name="name" className="popup__input popup__input_type_title"
